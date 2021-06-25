@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+
+    <link href="{% static 'fontawesome_free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <script src="{% static 'fontawesome_free/js/all.min.js' %}"></script>
+
+    <title>Directro - Directory Server</title>
+
+    <style>
+
+        body{
+            background-color: black;
+            color: #00ff00;
+        }
+        a{
+            color: #00ff00;
+        }
+        .container, .container-fluid{
+            //border: solid 2px #00b300;
+        }
+        {% block 'style' %}
+
+        {% endblock %}
+    </style>
+</head>
+<body>
+<div class="container-fluid " name="screen-con">
+
+
+
+    <div class="container-fluid my-3 border-bottom border-success" style="" name="top-con">
+
+        <div class="row /border border-warning">
+        <div class="col-8">
+            <div class="row /border">
+                <div class="col-3 /border">
+
+                    <span id="matrix" class="fas  fa-7x fa-spin px-auto"><i class="fas fa-refresh fa-9x "><i class="fas fa-globe fa-9x"></i></i></span>
+
+                </div>
+                <div class="col-9 /border">
+
+                    {% block 'dirLocation' %}
+
+                    {% endblock %}
+                    <div>
+
+    <h2>Loading: <span id="kernel"></span></h2>
+
+</div>
+
+<script>
+
+    function kernel(){
+
+        var terms = [
+        'extlinux.conf',
+         'zImage',
+         'root=/dev/mmcblk0p2',
+         'rootfstype=ext4',
+         'console=ttymxc0,115200n8',
+         'fdtdir /dtbs',
+         'initrd',
+         'initramfs-linux.img',
+         'boot.scr',
+         '/boot.scr.uimg',
+         'FIT image',
+         'setenv fdt_high',
+         '${devtype}',
+         '${devnum}:${distro_bootpart}',
+         '${ramdisk_addr_r}',
+         '${prefix}tezi.itb',
+         'overlays_file',
+         'skip_fdt_overlays',
+         'fdtfile',
+         'boot_devtype',
+         'serverip',
+         'rootpath',
+         ];
+
+        var terms_len = terms.length;
+
+        var term_num = Math.floor(Math.random() * terms_len);
+        $('#kernel').text(terms[term_num]);
+        setTimeout(kernel, 5000);
+    }
+    kernel();
+
+</script>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+
+                <!-- System Stats -->
+
+    <div class="row my-3 float-right" style="height: 60%; width: 350px;">
+
+        <div class="col-12">
+
+            <div class="row">
+                <div class="col">
+                    <h6>CPU:</h6>
+                </div>
+                <div class="col">
+                    <div class="row border mb-1" style="height: 15px; width: 250px;">
+                        <div id="cpu_stat" style="background-color: #00ff00; height: 100%; width: 10px;"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <h6>GPU:</h6>
+                </div>
+                <div class="col">
+                    <div  class="row border mb-1" style="height: 15px; width: 250px;">
+                        <div id="gpu_stat" style="background-color: #00ff00; height: 100%; width: 10px;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <h6>Memory:</h6>
+                </div>
+                <div class="col">
+                    <div  class="row border mb-1" style="height: 15px; width: 250px;">
+                        <div id="memory_stat" style="background-color: #00ff00; height: 100%; width: 10px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function sys_stats(){
+
+                    var cpu_stat = Math.floor(Math.random() * 100);
+                    var gpu_stat = Math.floor(Math.random() * 100);
+                    var memory_stat = Math.floor(Math.random() * 100);
+
+                    $('#cpu_stat').animate({width: String(cpu_stat)+'%'}, 200);
+                    $('#gpu_stat').animate({width: String(gpu_stat)+'%'}, 200);
+                    $('#memory_stat').animate({width: String(memory_stat)+'%'}, 200);
+                    sys_stats();
+
+            }
+            sys_stats();
+        </script>
+
+    </div>
+
+        </div>
+    </div>
+
+
+
+    </div>
+
+    <div class="container-fluid" name="body-con">
+
+
+        <div class="row" id="body-section" style="min-height: 1500px; max-height: auto; height: 100%">
+
+            <div id="matrix-left" class="col-2 border-right border-success" style="">
+                 <!-- Matrix Pattern -->
+                <div id="" class="text-justify" style="word-break: break-all;">
+                        <span class="matrix-text"></span>
+                        <!--<span class="matrix-text"></span>
+                        <span class="matrix-text"></span>
+                        <span class="matrix-text"></span>
+                        <span class="matrix-text"></span>
+                        <span class="matrix-text"></span>
+                        <span class="matrix-text"></span>-->
+                </div>
+
+            </div>
+
+
+
+                <div class="col-8 /border /border-warning">
+                    <!--<div id="holder" class="border" style="height: 25px; width: 300px;">
+
+                        <div id="load" style="height: 100%; width: 10px; background-color: #00ff00;"></div>
+                    </div>-->
+                    <div id="f-f" class="container" name="body-con-con">
+                        {% block 'contents' %}
+
+                        {% endblock %}
+                    </div>
+
+                </div>
+
+            <div id="matrix-right" class="col-2 border-left border-success">
+                <!-- Matrix Pattern -->
+                <div id="" class="" style="word-break: break-all; overflow: hidden;">
+                        <span class="matrix-text"></span>
+                        <!--<span class="matrix-text"></span>
+                        <span class="matrix-text"></span>
+                        <span class="matrix-text"></span>
+                        <span class="matrix-text"></span>
+                        <span class="matrix-text"></span>
+                        <span class="matrix-text"></span>-->
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+</div>
+
+<script>
+        var matrix_timeout;
+        function matrix(count){
+
+                //var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()abcdefghijklmnopqrstuvwxyz';
+                var characters = '100101100101100101100111010010100100111101010101101';
+                var char_len = characters.length;
+                var matrix_string = '';
+                for(var i = 0; i<3; i++){
+                    matrix_string = characters.charAt(Math.floor(Math.random() * char_len));
+                    $('.matrix-text').append(matrix_string);
+                    //$('.matrix-text').fadeIn(0);
+                    }
+
+                //console.log(matrix_string);
+
+                if(count != 350){
+                    count+=1;
+                }
+                else{
+                    count = 0;
+                    $('.matrix-text').text('');
+                }
+                matrix_timeout = setTimeout(matrix, 10, count);
+            }
+
+        $('#matrix-left').click(function(){
+            matrix(0);
+        });
+        $('#matrix-right').click(function(){
+            clearTimeout(matrix_timeout);
+        });
+        $('body').ready(()=>{
+            matrix(0);
+            /*
+            $('#f-f').hide();
+                $('#load').animate({width: "100%"}, {done: ()=>{
+
+                    $('#f-f').show();
+                    $('#holder').hide();
+                }, duration: 4000});*/
+        });
+
+
+    </script>
+
+</body>
+</html>

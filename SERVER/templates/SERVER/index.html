@@ -1,0 +1,42 @@
+{% extends 'BaseApp/base.html' %}
+
+
+{% block 'dirLocation' %}
+<h1 style="word-break: break-all;" class="text-justify "><a href="{{r}}">{{ base_dir }}</a></h1>
+{% endblock %}
+
+{% block 'contents' %}
+<div class="container pl-5">
+    <h3 class="text-center pr-5">Directories</h3>
+<div class="row mx-auto my-auto">
+
+    {% for name, path in dir_info.items %}
+    <a  href="{% url 'directory' path %}" >
+        <div class="col /border /border-danger d-block m-3 " style="height: 170px; width: 170px; overflow: hidden;">
+        <span><i class="fa fa-folder fa-8x " aria-hidden="true"></i></span>
+            <h6 class="text-justify  text-center text-truncate">{{name}}</h6>
+    </div>
+    </a>
+    {% endfor %}
+
+</div>
+    <hr color="green">
+    <h3 class="text-center pr-5">Files</h3>
+<div class="row">
+    {% for file, mime_path in mimes.items %}
+    <a href="/static/{{mime_path}}">
+        <div class="col /border /border-danger d-block m-3 " style="height: 170px; width: 170px; overflow: hidden;">
+        <span><i class="fas fa-file fa-7x my-2 mx-4"></i></i></span>
+            <h6 class="text-justify  text-center text-truncate">{{file}}</h6>
+        </div>
+
+
+    </a>
+    {% endfor %}
+   <!-- <h1>{{ r }}</h1>-->
+</div>
+</div>
+
+{% endblock %}
+
+
